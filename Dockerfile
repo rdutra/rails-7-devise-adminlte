@@ -1,19 +1,15 @@
 FROM ruby:3.0
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client npm
-
-RUN npm install --global yarn
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
 RUN mkdir /facilities
 WORKDIR /facilities
 
 COPY Gemfile /facilities/Gemfile
-COPY Gemfile.lock /facilities/Gemfile.lock
+# COPY Gemfile.lock /facilities/Gemfile.lock
 
 RUN bundle install
 COPY . /facilities
-
-RUN yarn add @fortawesome/fontawesome-free
 
 ## importmaps (after these are commited there's no need to have them in the build)
 # RUN ./bin/importmap pin bootstrap@4 --download
