@@ -1,5 +1,5 @@
 docker-compose build
 docker-compose run rake db:setup
 docker-compose up
-docker-compose run facilities bash
+docker-compose run app bash
 
